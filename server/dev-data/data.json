@@ -25,17 +25,12 @@
     {
       "id": "2",
       "name": "Grant Sanderson",
-      "age": 42
+      "age": 24
     },
     {
       "id": "3",
       "name": "Michael Stevens",
       "age": 69
-    },
-    {
-      "name": "Franz Kafka",
-      "age": 96,
-      "id": "JCJrcZb"
     }
   ]
 }

@@ -127,6 +127,28 @@ const mutation = new Object({
           .then((res) => res.data);
       },
     },
+    deleteAuthor: {
+      type: Author,
+      args: { id: { type: new GraphQLNonNull(ID) } },
+      resolve(parentValue, args) {
+        return axios
+          .delete('http://localhost:3000/authors/' + args.id)
+          .then((res) => res.data);
+      },
+    },
+    editAuthor: {
+      type: Author,
+      args: {
+        id: { type: new GraphQLNonNull(ID) },
+        name: { type: String },
+        age: { type: Int },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .patch('http://localhost:3000/authors/' + args.id, args)
+          .then((res) => res.data);
+      },
+    },
   },
 });
 
