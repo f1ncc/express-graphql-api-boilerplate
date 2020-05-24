@@ -5,10 +5,12 @@ const {
   GraphQLString,
   GraphQLID,
 } = require('graphql');
+const _ = require('lodash');
 const Book = require('./types/bookType');
 const Author = require('./types/AuthorType');
-const bookResolver = require('./resolvers/bookResolver');
-const authorResolver = require('./resolvers/authorResolver');
+// const bookResolver = require('./resolvers/bookResolver');
+// const authorResolver = require('./resolvers/authorResolver');
+const { books, authors } = require('./../dev-data/dummy-data');
 
 const String = GraphQLString;
 const Object = GraphQLObjectType;
@@ -22,14 +24,14 @@ const RootQuery = new Object({
       type: Book,
       args: { id: { type: ID } },
       resolve(parent, args) {
-        bookResolver();
+        return _.find(books, { id: args.id });
       },
     },
     author: {
       type: Author,
       args: { id: { type: ID } },
       resolve(parent, args) {
-        authorResolver();
+        return _.find(authors, { id: args.id });
       },
     },
   },
