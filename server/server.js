@@ -1,5 +1,5 @@
 const express = require('express');
-const gql = require('express-graphql');
+const graphqlHTTP = require('express-graphql');
 const RootQuery = require('./graphql/rootQuery');
 const { config } = require('dotenv');
 
@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   '/graphql',
-  gql({
+  graphqlHTTP({
     RootQuery,
     graphiql: true,
   })
