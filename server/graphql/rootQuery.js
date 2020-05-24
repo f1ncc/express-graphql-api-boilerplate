@@ -10,12 +10,12 @@ const Author = require('./types/AuthorType');
 const bookResolver = require('./resolvers/bookResolver');
 const authorResolver = require('./resolvers/authorResolver');
 
-// const String = GraphQLString;
-// const Object = GraphQLObjectType;
+const String = GraphQLString;
+const Object = GraphQLObjectType;
 const ID = GraphQLID;
-// const Schema = GraphQLSchema;
+const Schema = GraphQLSchema;
 
-const RootQuery = new GraphQLObjectType({
+const RootQuery = new Object({
   name: 'RootQuery',
   fields: {
     book: {
@@ -35,6 +35,6 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
-module.exports = new GraphQLSchema({
+module.exports = new Schema({
   query: RootQuery,
 });
