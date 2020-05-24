@@ -5,6 +5,8 @@ const {
   GraphQLString,
   GraphQLID,
   GraphQLList,
+  GraphQLNonNull,
+  GraphQLInt,
 } = require('graphql');
 const _ = require('lodash');
 const axios = require('axios');
@@ -19,6 +21,7 @@ const Object = GraphQLObjectType;
 const ID = GraphQLID;
 const Schema = GraphQLSchema;
 const List = GraphQLList;
+const Int = GraphQLInt;
 
 const RootQuery = new Object({
   name: 'RootQuery',
@@ -69,6 +72,65 @@ const RootQuery = new Object({
   },
 });
 
+const mutation = new Object({
+  name: 'Mutation',
+  fields: {
+    addBook: {
+      type: Book,
+      args: {
+        name: { type: new GraphQLNonNull(String) },
+        genre: { type: new GraphQLNonNull(String) },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .post('http://localhost:3000/books', {
+            name: args.name,
+            genre: args.genre,
+          })
+          .then((res) => res.data);
+      },
+    },
+    deleteBook: {
+      type: Book,
+      args: { id: { type: new GraphQLNonNull(ID) } },
+      resolve(parentValue, args) {
+        return axios
+          .delete('http://localhost:3000/books/' + args.id)
+          .then((res) => res.data);
+      },
+    },
+    editBook: {
+      type: Book,
+      args: {
+        id: { type: new GraphQLNonNull(ID) },
+        name: { type: String },
+        genre: { type: String },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .patch('http://localhost:3000/books/' + args.id, args)
+          .then((res) => res.data);
+      },
+    },
+    addAuthor: {
+      type: Author,
+      args: {
+        name: { type: new GraphQLNonNull(String) },
+        age: { type: new GraphQLNonNull(Int) },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .post('http://localhost:3000/authors', {
+            name: args.name,
+            age: args.age,
+          })
+          .then((res) => res.data);
+      },
+    },
+  },
+});
+
 module.exports = new Schema({
   query: RootQuery,
+  mutation,
 });

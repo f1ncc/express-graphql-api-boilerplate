@@ -8,7 +8,7 @@
     {
       "id": "2",
       "name": "3b1b",
-      "genre": "Fantasy"
+      "genre": "Education"
     },
     {
       "id": "3",
@@ -31,6 +31,11 @@
       "id": "3",
       "name": "Michael Stevens",
       "age": 69
+    },
+    {
+      "name": "Franz Kafka",
+      "age": 96,
+      "id": "JCJrcZb"
     }
   ]
 }
