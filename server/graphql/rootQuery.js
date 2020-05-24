@@ -7,11 +7,12 @@ const {
   GraphQLList,
 } = require('graphql');
 const _ = require('lodash');
+const axios = require('axios');
 const Book = require('./types/bookType');
 const Author = require('./types/AuthorType');
 // const bookResolver = require('./resolvers/bookResolver');
 // const authorResolver = require('./resolvers/authorResolver');
-const { books, authors } = require('./../dev-data/dummy-data');
+// const { books, authors } = require('./../dev-data/dummy-data');
 
 const String = GraphQLString;
 const Object = GraphQLObjectType;
@@ -26,26 +27,43 @@ const RootQuery = new Object({
       type: Book,
       args: { id: { type: ID } },
       resolve(parent, args) {
-        return _.find(books, { id: args.id });
+        // return _.find(books, { id: args.id });
+        // return _.find(data[0], { id: args.id });
+        return (
+          axios
+            .get('http://localhost:3000/books/' + args.id)
+            // .then((res) => _.find(res[0], { id: args.id }));
+            .then((res) => res.data)
+        );
       },
     },
     books: {
       type: new List(Book),
       resolve(parent, args) {
-        return books;
+        // return books;
+        // return data[0];
+        return axios.get('http://localhost:3000/books').then((res) => res.data);
       },
     },
     author: {
       type: Author,
       args: { id: { type: ID } },
       resolve(parent, args) {
-        return _.find(authors, { id: args.id });
+        // return _.find(authors, { id: args.id });
+        // return _.find(data[1], { id: args.id });
+        return axios
+          .get('http://localhost:3000/authors/' + args.id)
+          .then((res) => res.data);
       },
     },
     authors: {
       type: new List(Author),
       resolve(parent, args) {
-        return authors;
+        // return authors;
+        // return data[1];
+        return axios
+          .get('http://localhost:3000/authors')
+          .then((res) => res.data);
       },
     },
   },

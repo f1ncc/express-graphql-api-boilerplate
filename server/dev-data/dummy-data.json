@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "books": [
+        {
+          "id": "1",
+          "name": "living in bulgaria",
+          "genre": "Fantasy"
+        },
+        {
+          "id": "2",
+          "name": "3b1b",
+          "genre": "Fantasy"
+        },
+        {
+          "id": "3",
+          "name": "dong",
+          "genre": "Sci-Fi"
+        }
+      ]
+    },
+    {
+      "authors": [
+        {
+          "id": "1",
+          "name": "Depression Turtle",
+          "age": 44
+        },
+        {
+          "id": "2",
+          "name": "Grant Sanderson",
+          "age": 42
+        },
+        {
+          "id": "3",
+          "name": "Michael Stevens",
+          "age": 69
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,7 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const RootQuery = require('./graphql/rootQuery');
 const { config } = require('dotenv');
+const axios = require('axios');
 
 config();
 
@@ -16,6 +17,11 @@ app.use(
 );
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+// const data = (async () => {
+//   await axios.get('http://localhost:3000/data').then((res) => res.data);
+// })();
+app.listen(port, async () => {
+  // await data;
   console.log(`app is at port ${port}`);
+  // console.log(data);
 });
