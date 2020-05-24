@@ -6,6 +6,8 @@ const {
 } = require('graphql');
 const Book = require('./types/bookType');
 const Author = require('./types/AuthorType');
+const bookResolver = require('./resolvers/bookResolver');
+const authorResolver = require('./resolvers/authorResolver');
 
 const String = GraphQLString;
 const Object = GraphQLObjectType;
@@ -18,6 +20,16 @@ const RootQuery = new Object({
     book: {
       type: Book,
       args: { id: { type: ID } },
+      resolve(parent, args) {
+        bookResolver();
+      },
+    },
+    author: {
+      type: Author,
+      args: { id: { type: ID } },
+      resolve(parent, args) {
+        authorResolver();
+      },
     },
   },
 });
