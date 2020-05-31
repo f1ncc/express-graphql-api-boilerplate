@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "json-server": "json-server --watch ./dev-data/data.json"
+    "start": "nodemon server.js && json-server --watch ./dev-data/data.json",
+    "now-start": "node server.js && json-server --watch ./dev-data/data.json"
   },
   "author": "",
   "license": "ISC",
